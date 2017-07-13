@@ -1,6 +1,8 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 
+print "Basit iniş kalkış"
+
 from __future__ import print_function
 from dronekit import connect, VehicleMode, LocationGlobalRelative, LocationGlobal
 from time import sleep, time
@@ -8,6 +10,8 @@ import numpy as np
 import math
 import tanimlar as t
 ### Fonksiyon ve sınıf tanımları
+
+sleep(10)
 
 ###############################################################################
 

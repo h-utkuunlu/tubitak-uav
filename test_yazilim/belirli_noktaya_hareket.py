@@ -1,12 +1,16 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 
+print "Belirli noktaya hareket"
+
 from __future__ import print_function
 from dronekit import connect, VehicleMode, LocationGlobalRelative, LocationGlobal
 from time import sleep, time
 import numpy as np
 import math
 import tanimlar as t
+
+sleep(10)
 
 ###############################################################################
 

@@ -1,6 +1,8 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 
+print "Görev 1 Otonom"
+
 from __future__ import print_function
 from dronekit import connect, VehicleMode, LocationGlobalRelative, LocationGlobal
 from time import sleep, time
@@ -23,6 +25,8 @@ irtifa = 8          # hesaplama: irtifa = ((matris eni)/2)/(arctan(24.4 derece))
 matris_konum = LocationGlobalRelative(40.087013, 32.594787, irtifa)
 teslim_konum = LocationGlobalRelative(40.084942, 32.593614, irtifa)
 dogrultu = 230
+
+skeep(10)
 
 ### Drone ile iletişim
 drone = connect('/dev/ttyACM0', wait_ready=True)

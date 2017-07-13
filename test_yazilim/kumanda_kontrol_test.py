@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
+print "Kumanda kontrol"
 
 from __future__ import print_function
 from threading import Thread
@@ -17,6 +18,8 @@ import tanimlar as t
 ### Değişken kurulumu
 
 irtifa = 8
+
+sleep(10)
 
 ## Cihazla iletişim
 drone = connect('/dev/ttyUSB0', wait_ready=True, baud=921600)

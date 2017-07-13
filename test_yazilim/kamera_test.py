@@ -1,6 +1,8 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 
+print "Kamera test"
+
 from __future__ import print_function
 from threading import Thread
 from shape_detector import ShapeDetector
@@ -15,6 +17,8 @@ import tanimlar as t
 import datetime
 
 ###############################################################################
+
+sleep(10)
 
 # Kamerayı başlat ve görüntüyü işle
 kamera = picamera.PiCamera()

@@ -7,6 +7,8 @@ from time import sleep
 # Import DroneKit-Python
 from dronekit import connect, VehicleMode
 
+sleep(10)
+
 # Connect to the Vehicle.
 #print("Connecting to vehicle on: %s" % (connection_string,))
 vehicle = connect('/dev/ttyACM0', wait_ready=True)

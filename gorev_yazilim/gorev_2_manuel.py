@@ -1,6 +1,8 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 
+print "Görev 2 Manuel"
+
 from __future__ import print_function
 from dronekit import connect, VehicleMode, LocationGlobalRelative, LocationGlobal
 from time import sleep, time
@@ -24,6 +26,8 @@ dogrultu = 230
 
 servo_kapali = 1000
 servo_acik = 1800
+
+sleep(10)
 
 ## Drone bağlantı
 drone = connect('/dev/ttyACM0', wait_ready=True) # '/dev/ttyS0'
