@@ -26,7 +26,7 @@ servo_kapali = 1000
 servo_acik = 1800
 
 ## Drone bağlantı
-drone = connect('/dev/ttyUSB0', wait_ready=True) # '/dev/ttyS0'
+drone = connect('/dev/ttyACM0', wait_ready=True) # '/dev/ttyS0'
 
 ### Drone Hareketleri
 

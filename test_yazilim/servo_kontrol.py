@@ -17,18 +17,16 @@ import tanimlar as t
 ### Değişken kurulumu
 
 # Servo konumlari
-kirmizi_paket = 1
-mavi_paket = 2
-sari_paket = 3
+kirmizi_paket = 6
+mavi_paket = 7
+sari_paket = 8
 
-servo_acik = t.servo_acik
-servo_kapali = t.servo_kapali
+servo_acik = 1000
+servo_kapali = 1800
 
 ## Cihazla iletişim
-drone = connect('/dev/ttyUSB0', wait_ready=True, baud=921600)
+drone = connect('/dev/ttyACM0', wait_ready=True)
 ### Drone Hareketleri
-
-ev_konum = t.hazirlik_ve_kalkis(2)
 
 t.servo_ayarla(drone, kirmizi_paket, servo_acik)
 sleep(1)
@@ -46,13 +44,6 @@ t.servo_ayarla(drone, mavi_paket, servo_acik)
 sleep(1)
 
 ## İniş
-drone.mode = VehicleMode("LAND")
-while drone.location.global_relative_frame.alt > 0.25:
-    print(drone.location.global_relative_frame.alt)
-    sleep(0.5)
-
-print("İniş gerçekleşti")
-
 cv2.destroyAllWindows()
 drone.close()
 

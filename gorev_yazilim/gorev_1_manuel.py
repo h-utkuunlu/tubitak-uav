@@ -25,7 +25,7 @@ teslim_konum = LocationGlobalRelative(40.084942, 32.593614, irtifa)
 dogrultu = 230
 
 ### Drone ile iletişim
-drone = connect('/dev/ttyUSB0', wait_ready=True)
+drone = connect('/dev/ttyACM0', wait_ready=True)
 
 ### Drone Hareketleri
 
