@@ -259,4 +259,7 @@ def servo_ayarla(drone, servo, pwm):
     0,              # param 3
     0,              # param 4
     0, 0, 0)        # param 5 ~ 7 not used
+
+    print("Servoya yazılıyor")
+
     drone.send_mavlink(servo_komut)
