@@ -23,5 +23,4 @@ print " Global Location (relative altitude): %s" % vehicle.location.global_relat
 vehicle.close()
 
 # Shut down simulator
-sitl.stop()
 print("Tamamlandı")

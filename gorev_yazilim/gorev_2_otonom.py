@@ -40,7 +40,7 @@ servo_ayarla(drone, mavi_paket, t.servo_kapali)
 servo_ayarla(drone, sari_paket, t.servo_kapali)
 
 ## Kalkış & Ev konumu belirleme
-ev_konum = t.hazirlik_ve_kalkis(drone, irtifa)
+(ev_konum, ev_dogrultu) = t.hazirlik_ve_kalkis(drone, irtifa)
 
 ## Kalkış sonrası matrisin üzerine uç
 drone.simple_goto(matris_konum)
@@ -48,7 +48,7 @@ drone.simple_goto(matris_konum)
 while t.hedef_varis(drone, matris_konum):
     sleep(1)
 
-t.dogrultu_duzelt(drone, dogrultu)
+t.dogrultu_duzelt(drone, ev_dogrultu)
 
 # Kamerayı başlat ve görüntüyü işle
 kamera = t.WebcamVideoStream().start()

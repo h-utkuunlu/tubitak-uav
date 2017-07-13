@@ -46,14 +46,14 @@ while drone.mode.name != "GUIDED":
 
 ## Ev konumu belirleme
 ev_konum = drone.location.global_relative_frame
-
+ev_dogrultu = drone.attitude.yaw*(180/math.pi)+360)%360
 ## Kalkış sonrası matrisin üzerine uç
 drone.simple_goto(matris_konum)
 
 while t.hedef_varis(drone, matris_konum):
     sleep(1)
 
-t.dogrultu_duzelt(drone, dogrultu)
+t.dogrultu_duzelt(drone, ev_dogrultu)
 
 # Kamerayı başlat ve görüntüyü işle
 kamera = t.WebcamVideoStream().start()
