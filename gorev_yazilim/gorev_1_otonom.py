@@ -20,12 +20,12 @@ sayac = 0
 
 ## Hedef tanımları
 irtifa = 8          # hesaplama: irtifa = ((matris eni)/2)/(arctan(24.4 derece)) . 5 metre matris eni icin h = 5.51. 6 - 10 arası bir irtifanın iş görmesi gerekir. Matris yüzeyinden baz alarak
-matris_konum = LocationGlobalRelative(40.085264, 32.593656, irtifa)
+matris_konum = LocationGlobalRelative(40.087013, 32.594787, irtifa)
 teslim_konum = LocationGlobalRelative(40.084942, 32.593614, irtifa)
 dogrultu = 230
 
 ### Drone ile iletişim
-drone = connect('/dev/ttyUSB0', wait_ready=True, baud=921600)
+drone = connect('/dev/ttyUSB0', wait_ready=True)
 
 ### Drone Hareketleri
 

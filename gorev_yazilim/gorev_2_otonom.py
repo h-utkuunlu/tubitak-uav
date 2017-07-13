@@ -15,18 +15,18 @@ import tanimlar as t
 ### Değişken kurulumu
 
 ## Başlangıç değerleri
-dogrultu = 230      # Matrisin üst kenarının doğrultusu
 irtifa = 8          # hesaplama: irtifa = ((matris eni)/2)/(arctan(24.4 derece)) . 5 metre matris eni icin h = 5.51. 6 - 10 arası bir irtifanın iş görmesi gerekir. Matris yüzeyinden baz alarak
 
-matris_konum = LocationGlobalRelative(40.085264, 32.593656, irtifa) # Matrisin koordinatlarını gir
-teslim_konum = LocationGlobalRelative(40.084942, 32.593614, irtifa) # Paket bırakma alanının koordinatlarını gir
+matris_konum = LocationGlobalRelative(40.087013, 32.594787, irtifa)
+teslim_konum = LocationGlobalRelative(40.084942, 32.593614, irtifa)
+dogrultu = 230
 #ev_konum = 40.084565, 32.594659
 
 servo_kapali = 1000
 servo_acik = 1800
 
 ## Drone bağlantı
-drone = connect('/dev/ttyUSB0', wait_ready=True, baud=921600) # '/dev/ttyS0'
+drone = connect('/dev/ttyUSB0', wait_ready=True) # '/dev/ttyS0'
 
 ### Drone Hareketleri
 

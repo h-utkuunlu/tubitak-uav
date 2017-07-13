@@ -199,11 +199,11 @@ def sd_kart(renk_str):
     '''
     Verilen metin dizisindeki (string) renklere göre metni SD karta yazar
     '''
-    # ser = serial.Serial('/dev/ttyUSB0', 9600)
-    # out_str = renk_str.replace('s', '0').replace('m', '1').replace('k', '2').encode()
-    # ser.write(out_str)
-    # sleep(0.2)
-    # ser.close()
+    ser = serial.Serial('/dev/ttyS0', 9600)
+    out_str = renk_str.replace('s', '0').replace('m', '1').replace('k', '2').encode()
+    ser.write(out_str)
+    sleep(0.2)
+    ser.close()
     print(renk_str)
 
 def hedef_varis(drone, hedef):
