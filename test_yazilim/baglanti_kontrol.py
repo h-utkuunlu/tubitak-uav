@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: UTF-8 -*-
+
 print "Bağlantı test"
 from time import sleep
 
@@ -6,7 +9,7 @@ from dronekit import connect, VehicleMode
 
 # Connect to the Vehicle.
 #print("Connecting to vehicle on: %s" % (connection_string,))
-vehicle = connect('/dev/ttyUSB0', wait_ready=True)
+vehicle = connect('/dev/ttyACM0', wait_ready=True)
 
 # Get some vehicle attributes (state)
 print "Get some vehicle attribute values:"

@@ -10,7 +10,9 @@ import numpy as np
 import cv2
 import imutils
 import math
+import picamera
 import tanimlar as t
+import datetime
 
 ###############################################################################
 
@@ -40,7 +42,7 @@ for i in range(3):
 
 ### Görev tamam
 print('Görev tamam')
-kamera.release()
+kamera.close()
 
 ## Cihaz kapatma komutları
 print("Kapatılıyor")
