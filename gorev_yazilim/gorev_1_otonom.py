@@ -10,6 +10,7 @@ import numpy as np
 import cv2
 import imutils
 import math
+import picamera
 import tanimlar as t
 
 ###############################################################################
@@ -45,7 +46,7 @@ while t.hedef_varis(drone, matris_konum):
 t.dogrultu_duzelt(drone, ev_dogrultu)
 
 # Kamerayı başlat ve görüntüyü işle
-kamera = t.WebcamVideoStream().start()
+kamera = picamera.PiCamera()
 
 yeni_set = True
 gorev_baslangic = time()
@@ -53,7 +54,11 @@ gorev_baslangic = time()
 while True:
 
     # goruntu = cv2.imread('color_grab.png', -1) # Kamera ile değiştirilecek
-    goruntu = kamera.read()
+
+    dosya_adi = datetime.datetime.fromtimestamp(time()).strftime('%Y-%m-%d %H-%M-%S') + '.jpg'
+    kamera.capture(dosya_adi)
+    goruntu = cv2.imread(dosya_adi, -1)
+
     matris = t.goruntu_isleme(goruntu)
 
     if matris != 'Hata': # 16 kare bulundu
@@ -82,7 +87,7 @@ while True:
 
 ### Görev tamam
 print('Görev tamam')
-kamera.stop()
+kamera.close()
 
 ## Kalkış konumuna git
 drone.mode = VehicleMode("RTL")

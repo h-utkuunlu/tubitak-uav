@@ -10,6 +10,7 @@ import numpy as np
 import cv2
 import imutils
 import math
+import picamera
 import tanimlar as t
 
 ###############################################################################
@@ -39,9 +40,9 @@ kirmizi_paket = 6
 mavi_paket = 7
 sari_paket = 8
 
-servo_ayarla(drone, kirmizi_paket, t.servo_kapali) # Muhtemelen calismayacak
-servo_ayarla(drone, mavi_paket, t.servo_kapali)
-servo_ayarla(drone, sari_paket, t.servo_kapali)
+servo_ayarla(drone, kirmizi_paket, servo_kapali) # Muhtemelen calismayacak
+servo_ayarla(drone, mavi_paket, servo_kapali)
+servo_ayarla(drone, sari_paket, servo_kapali)
 
 ## Kalkış & Ev konumu belirleme
 (ev_konum, ev_dogrultu) = t.hazirlik_ve_kalkis(drone, irtifa)
@@ -55,12 +56,15 @@ while t.hedef_varis(drone, matris_konum):
 t.dogrultu_duzelt(drone, ev_dogrultu)
 
 # Kamerayı başlat ve görüntüyü işle
-kamera = t.WebcamVideoStream().start()
+kamera = picamera.PiCamera()
 
 while True:
 
     # goruntu = cv2.imread('color_grab.png', -1) # Kamera ile değiştirilecek
-    goruntu = kamera.read()
+    dosya_adi = datetime.datetime.fromtimestamp(time()).strftime('%Y-%m-%d %H-%M-%S') + '.jpg'
+    kamera.capture(dosya_adi)
+    goruntu = cv2.imread(dosya_adi, -1)
+
     matris = t.goruntu_isleme(goruntu)
 
     if matris != 'Hata': # 16 kare bulundu
@@ -71,7 +75,7 @@ while True:
         sleep(0.2)
 
 print('Matris görüntü işleme tamamlandı')
-kamera.stop()
+kamera.close()
 
 ## Paraşüt bırakma alanına uç
 drone.simple_goto(teslim_konum)

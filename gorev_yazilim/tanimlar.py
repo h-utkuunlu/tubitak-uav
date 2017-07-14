@@ -91,15 +91,18 @@ def goruntu_isleme(grt):
     # Renk sınırları: (renk kodu, (hsv alt sınır, hsv üst sınır))
     renk_sinir = [
     ('k', (np.array([0, 50, 50], dtype = np.uint8) , np.array([12, 255, 255], dtype = np.uint8))), # Kırmızı
-    ('m', (np.array([97, 80, 50], dtype = np.uint8) , np.array([105, 255, 255], dtype = np.uint8))), # Mavi
-    ('s', (np.array([15, 175, 50], dtype = np.uint8) , np.array([30, 255, 255], dtype = np.uint8))), # Sarı
+    ('m', (np.array([97, 75, 50], dtype = np.uint8) , np.array([120, 255, 255], dtype = np.uint8))), # Mavi
+    ('s', (np.array([15, 180, 50], dtype = np.uint8) , np.array([30, 255, 255], dtype = np.uint8))), # Sarı
     ]
 
     for (renk, (alt, ust)) in renk_sinir:
 
-        # Verilen rengi algıla ve şekilleri birleştir
-
         mask = cv2.inRange(hsv, alt, ust)
+        if renk = "k":
+            k_ust = ( , )
+            mask2 = cv2.inRange(hsv, np.array([170, 50, 50], dtype = np.uint8), np.array([179, 255, 255], dtype = np.uint8))
+            mask = mask + mask2
+        # Verilen rengi algıla ve şekilleri birleştir
 
         blurred = cv2.GaussianBlur(mask, (15, 15), 0)
         thresh = cv2.threshold(blurred, 60, 255, cv2.THRESH_BINARY)[1]
