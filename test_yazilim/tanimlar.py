@@ -61,6 +61,8 @@ def hazirlik_ve_kalkis(drone, irtifa):
         sleep(1)
 
     ev_konum = drone.location.global_relative_frame
+    ev_dogrultu = (drone.attitude.yaw*(180/math.pi)+360)%360
+    print(ev_dogrultu)
 
     print("Kalkış!")
     drone.simple_takeoff(irtifa) # Take off to target altitude
@@ -75,7 +77,7 @@ def hazirlik_ve_kalkis(drone, irtifa):
             break
         sleep(1)
 
-    return ev_konum
+    return (ev_konum, ev_dogrultu)
 
 def goruntu_isleme(grt):
     """
@@ -89,15 +91,18 @@ def goruntu_isleme(grt):
     # Renk sınırları: (renk kodu, (hsv alt sınır, hsv üst sınır))
     renk_sinir = [
     ('k', (np.array([0, 50, 50], dtype = np.uint8) , np.array([12, 255, 255], dtype = np.uint8))), # Kırmızı
-    ('m', (np.array([97, 80, 50], dtype = np.uint8) , np.array([105, 255, 255], dtype = np.uint8))), # Mavi
-    ('s', (np.array([15, 175, 50], dtype = np.uint8) , np.array([30, 255, 255], dtype = np.uint8))), # Sarı
+    ('m', (np.array([97, 75, 50], dtype = np.uint8) , np.array([120, 255, 255], dtype = np.uint8))), # Mavi
+    ('s', (np.array([15, 180, 50], dtype = np.uint8) , np.array([30, 255, 255], dtype = np.uint8))), # Sarı
     ]
 
     for (renk, (alt, ust)) in renk_sinir:
 
-        # Verilen rengi algıla ve şekilleri birleştir
-
         mask = cv2.inRange(hsv, alt, ust)
+        if renk = "k":
+            k_ust = ( , )
+            mask2 = cv2.inRange(hsv, np.array([170, 50, 50], dtype = np.uint8), np.array([179, 255, 255], dtype = np.uint8))
+            mask = mask + mask2
+        # Verilen rengi algıla ve şekilleri birleştir
 
         blurred = cv2.GaussianBlur(mask, (15, 15), 0)
         thresh = cv2.threshold(blurred, 60, 255, cv2.THRESH_BINARY)[1]
@@ -199,8 +204,8 @@ def sd_kart(renk_str):
     '''
     Verilen metin dizisindeki (string) renklere göre metni SD karta yazar
     '''
-    # ser = serial.Serial('/dev/ttyUSB0', 9600)
-    # out_str = renk_str.replace('k', '0').replace('m', '1').replace('s', '2').encode()
+    # ser = serial.Serial('/dev/ttyS0', 9600)
+    # out_str = renk_str.replace('s', '0').replace('m', '1').replace('k', '2').encode()
     # ser.write(out_str)
     # sleep(0.2)
     # ser.close()
@@ -222,10 +227,13 @@ def hedef_varis(drone, hedef):
         print("Hedefe ulaşıldı")
         return False
 
-def dogrultu_duzelt(drone, aci):
+def dogrultu_duzelt(drone, pist_aci):
     '''
     Drone'un belirtilen doğrultuya bakmasını sağlar. 0 derece aracı kuzeye doğrultur
     '''
+
+    aci = (pist_aci + 630) % 360
+
     msg = drone.message_factory.command_long_encode(
         0, 0,       # target system, target component
         mavutil.mavlink.MAV_CMD_CONDITION_YAW, #command

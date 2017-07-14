@@ -16,14 +16,14 @@ sleep(10)
 ###############################################################################
 
 ### Değişken kurulumu
-irtifa = 8
+irtifa = 2
 
 ## Cihazla iletişim
-drone = connect('/dev/ttyUSB0', wait_ready=True, baud=921600) # '/dev/ttyS0'
+drone = connect('/dev/ttyACM0', wait_ready=True) # '/dev/ttyS0'
 
 ### Drone Hareketleri
 ## Kalkış & Ev konumu belirleme
-ev_konum = t.hazirlik_ve_kalkis(drone, irtifa)
+(ev_konum, ev_dogrultu) = t.hazirlik_ve_kalkis(drone, irtifa)
 
 print(drone.location.global_relative_frame)
 sleep(10)
